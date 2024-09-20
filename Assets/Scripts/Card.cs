@@ -4,15 +4,48 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public bool hasClicked;
+
+    [SerializeField] int col, row;
+
+    [SerializeField] Sprite gold, fish, shark, unrevealed;
+
+    SpriteRenderer renderer;
+
+    Animator animator;
+
+    public Choice myChoice;
+
     void Start()
     {
+
+        hasClicked = false;
+
+        animator = GetComponent<Animator>();
+        renderer = GetComponent<SpriteRenderer>();
+        myChoice = GameManager.instance.myBoard.GetChoice(row,col);
+
+        renderer.sprite = unrevealed;
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayTurn()
     {
-        
+
+        animator.Play("Reveal");
+
+        hasClicked = true;
+
     }
+
+    public void changeImage()
+    {
+
+        Sprite current = myChoice == Choice.FISH ? fish : myChoice == Choice.GOLD ? gold : shark;
+
+        renderer.sprite = current;
+
+    }
+
 }

@@ -83,7 +83,14 @@ public class Board : MonoBehaviour
 
         temp = GetRandomFromList();
 
-        choices[temp.row][temp.col] = Choice.SHARK;
+        choices[temp.row][temp.col] = Choice.SHARK; 
+
+    }
+
+    public Choice GetChoice(int row, int col)
+    {
+
+        return choices[row][col];
 
     }
 
