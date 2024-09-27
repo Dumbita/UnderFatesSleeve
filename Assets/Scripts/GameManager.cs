@@ -4,17 +4,22 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
 
     [SerializeField] TMP_Text message;
 
+    [SerializeField] TMP_Text balance;
+
     public Board myBoard;
 
     public static GameManager instance;
 
     bool hasGameFinished;
+
+    public static int points;
 
     public void GameRestart()
     {
@@ -38,6 +43,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+
+        points = 0;
 
         if (instance == null)
         {
@@ -117,6 +124,13 @@ public class GameManager : MonoBehaviour
 
         }
         
+    }
+
+    public void MessageOut(int points)
+    {
+
+        balance.text = points.ToString(); 
+
     }
 
 }

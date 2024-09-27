@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Card : MonoBehaviour
 {
@@ -17,8 +19,12 @@ public class Card : MonoBehaviour
 
     public Choice myChoice;
 
+    GameManager reference;
+
     void Start()
     {
+
+        reference = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         hasClicked = false;
 
@@ -45,6 +51,17 @@ public class Card : MonoBehaviour
         Sprite current = myChoice == Choice.FISH ? fish : myChoice == Choice.GOLD ? gold : shark;
 
         renderer.sprite = current;
+
+        if (current != (myChoice == Choice.SHARK))
+        {
+
+            GameManager.points += 10;
+
+            reference.MessageOut(GameManager.points);
+
+            print(GameManager.points);
+
+        }
 
     }
 
