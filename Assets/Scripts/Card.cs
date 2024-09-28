@@ -70,21 +70,15 @@ public class Card : MonoBehaviour
 
             }
 
-            GameManager.points += gain;
-
         }
         else
         {
 
             gain = 0;
 
-            GameManager.points = gain;
-
         }
 
-        reference.MessageOut(GameManager.points);
-
-        print(GameManager.points);
+        reference.MessageOut(gain);
 
     }
 

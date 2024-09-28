@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text message;
 
     [SerializeField] TMP_Text balance;
+    [SerializeField] TMP_Text increase;
 
     public Board myBoard;
 
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     bool hasGameFinished;
 
-    public static int points;
+    int points;
 
     public void GameRestart()
     {
@@ -126,10 +127,25 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void MessageOut(int points)
+    public void MessageOut(int gain)
     {
 
-        balance.text = points.ToString(); 
+        increase.text = gain.ToString();
+
+        if (gain == 0)
+        {
+
+            points = 0;
+
+        }
+        else
+        {
+
+            points += gain;
+
+        }  
+
+        balance.text = points.ToString();
 
     }
 
