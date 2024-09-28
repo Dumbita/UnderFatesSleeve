@@ -9,6 +9,8 @@ public class Card : MonoBehaviour
 
     public bool hasClicked;
 
+    private int gain;
+
     [SerializeField] int col, row;
 
     [SerializeField] Sprite gold, fish, shark, unrevealed;
@@ -55,13 +57,34 @@ public class Card : MonoBehaviour
         if (current != (myChoice == Choice.SHARK))
         {
 
-            GameManager.points += 10;
+            if (current == (myChoice == Choice.GOLD))
+            {
 
-            reference.MessageOut(GameManager.points);
+                gain = 50;
 
-            print(GameManager.points);
+            }
+            else
+            {
+
+                gain = 10;
+
+            }
+
+            GameManager.points += gain;
 
         }
+        else
+        {
+
+            gain = 0;
+
+            GameManager.points = gain;
+
+        }
+
+        reference.MessageOut(GameManager.points);
+
+        print(GameManager.points);
 
     }
 
