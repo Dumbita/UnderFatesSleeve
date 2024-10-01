@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text message;
 
     [SerializeField] TMP_Text balance;
-    [SerializeField] TMP_Text increase;
+    [SerializeField] TMP_Text saved;
 
     public Board myBoard;
 
@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     bool hasGameFinished;
 
     int points;
+    int vault;
 
     public void GameRestart()
     {
@@ -106,18 +107,29 @@ public class GameManager : MonoBehaviour
 
                 card.PlayTurn();
 
-                if(card.myChoice == Choice.GOLD)
+                if (card.myChoice != Choice.FISH)
                 {
 
-                    hasGameFinished = true;
-                    message.text = "You Win";
+                    if (card.myChoice == Choice.GOLD)
+                    {
 
-                }
-                else if (card.myChoice == Choice.SHARK)
-                {
+                        message.text = "You Win";
 
+                    }
+                    else if (card.myChoice == Choice.SHARK)
+                    {
+
+                        points = 0;
+
+                        message.text = "You Lose";
+
+                    }
+
+                    vault += points;
+
+                    saved.text = vault.ToString();
                     hasGameFinished = true;
-                    message.text = "You Lose";
+                    
 
                 }
 
@@ -130,20 +142,7 @@ public class GameManager : MonoBehaviour
     public void MessageOut(int gain)
     {
 
-        increase.text = gain.ToString();
-
-        if (gain == 0)
-        {
-
-            points = 0;
-
-        }
-        else
-        {
-
-            points += gain;
-
-        }  
+        points += gain;
 
         balance.text = points.ToString();
 

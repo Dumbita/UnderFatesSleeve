@@ -727,8 +727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: {fileID: 2104496780}
-  balance: {fileID: 1221625405}
-  increase: {fileID: 498360302}
+  balance: {fileID: 498360302}
   myBoard: {fileID: 0}
 --- !u!1 &1281747813
 GameObject:

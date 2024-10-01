@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
+
+    public Image score;
+    public Sprite[] earnings = new Sprite[3];
 
     public bool hasClicked;
 
@@ -25,6 +29,8 @@ public class Card : MonoBehaviour
 
     void Start()
     {
+
+        score.enabled = false;
 
         reference = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
@@ -50,6 +56,8 @@ public class Card : MonoBehaviour
     public void changeImage()
     {
 
+        score.enabled = true;
+
         Sprite current = myChoice == Choice.FISH ? fish : myChoice == Choice.GOLD ? gold : shark;
 
         renderer.sprite = current;
@@ -61,12 +69,14 @@ public class Card : MonoBehaviour
             {
 
                 gain = 50;
+                score.sprite = earnings[0];
 
             }
             else
             {
 
                 gain = 10;
+                score.sprite = earnings[1];
 
             }
 
@@ -75,6 +85,7 @@ public class Card : MonoBehaviour
         {
 
             gain = 0;
+            score.sprite = earnings[2];
 
         }
 
