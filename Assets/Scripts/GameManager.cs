@@ -125,9 +125,7 @@ public class GameManager : MonoBehaviour
 
                     }
 
-                    vault += points;
-
-                    saved.text = vault.ToString();
+                    
                     hasGameFinished = true;
                     
 
@@ -145,6 +143,21 @@ public class GameManager : MonoBehaviour
         points += gain;
 
         balance.text = points.ToString();
+
+        if (gain != 10)
+        {
+
+            if (gain == 0)
+            {
+
+                points = 0;
+
+            }
+
+            vault += points;
+            saved.text = vault.ToString();
+
+        }
 
     }
 

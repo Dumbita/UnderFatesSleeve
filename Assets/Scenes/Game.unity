@@ -728,6 +728,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   message: {fileID: 2104496780}
   balance: {fileID: 498360302}
+  saved: {fileID: 1221625405}
   myBoard: {fileID: 0}
 --- !u!1 &1281747813
 GameObject:
