@@ -21,10 +21,12 @@ public class GameManager : MonoBehaviour
     bool hasGameFinished;
 
     int points;
-    int vault;
+    [SerializeField]int vault;
 
     public void GameRestart()
     {
+
+        PlayerPrefs.SetInt("money", vault);
 
         SceneManager.LoadScene(0);
 
@@ -32,6 +34,8 @@ public class GameManager : MonoBehaviour
 
     public void GameQuit()
     {
+
+        PlayerPrefs.SetInt("money",vault);
 
 #if UNITY_EDITOR
 
@@ -65,6 +69,13 @@ public class GameManager : MonoBehaviour
         hasGameFinished = false;
 
         myBoard =  new Board();
+
+    }
+
+    private void Start()
+    {
+
+        vault = PlayerPrefs.GetInt("money");
 
     }
 
@@ -155,6 +166,7 @@ public class GameManager : MonoBehaviour
             }
 
             vault += points;
+            PlayerPrefs.SetInt("money", vault);
             saved.text = vault.ToString();
 
         }
