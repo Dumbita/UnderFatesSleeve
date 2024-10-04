@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] TMP_Text balance;
     [SerializeField] TMP_Text saved;
+    [SerializeField] TMP_Text timesTable;
 
     public Board myBoard;
 
@@ -22,11 +23,13 @@ public class GameManager : MonoBehaviour
 
     int points;
     [SerializeField]int vault;
+    [SerializeField]int multiplier;
 
     public void GameRestart()
     {
 
         PlayerPrefs.SetInt("money", vault);
+        PlayerPrefs.SetInt("multi",multiplier);
 
         SceneManager.LoadScene(0);
 
@@ -36,6 +39,7 @@ public class GameManager : MonoBehaviour
     {
 
         PlayerPrefs.SetInt("money",vault);
+        PlayerPrefs.SetInt("multi", multiplier);
 
 #if UNITY_EDITOR
 
@@ -76,11 +80,14 @@ public class GameManager : MonoBehaviour
     {
 
         vault = PlayerPrefs.GetInt("money");
+        multiplier = PlayerPrefs.GetInt("multi");
 
     }
 
     private void Update()
     {
+
+        timesTable.text = "X " + multiplier.ToString();
 
         if (Input.GetMouseButton(0))
         {
@@ -161,12 +168,30 @@ public class GameManager : MonoBehaviour
             if (gain == 0)
             {
 
-                points = 0;
+                multiplier = 0;
+
+            }
+            else
+            {
+
+                if (multiplier != 0)
+                {
+
+                    multiplier = multiplier * 2;
+
+                }
+                else
+                {
+
+                    multiplier = 1;
+
+                }
 
             }
 
-            vault += points;
+            vault += (points * multiplier);
             PlayerPrefs.SetInt("money", vault);
+            PlayerPrefs.SetInt("multi", multiplier);
             saved.text = vault.ToString();
 
         }
