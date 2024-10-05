@@ -22,14 +22,19 @@ public class GameManager : MonoBehaviour
     bool hasGameFinished;
 
     int points;
+    [SerializeField]int temporary;
     [SerializeField]int vault;
     [SerializeField]int multiplier;
+
+    List<float> autoRoundUp = new List<float>();
+    bool rounding;
 
     public void GameRestart()
     {
 
         PlayerPrefs.SetInt("money", vault);
         PlayerPrefs.SetInt("multi",multiplier);
+        PlayerPrefs.SetInt("temp", temporary);
 
         SceneManager.LoadScene(0);
 
@@ -40,6 +45,7 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.SetInt("money",vault);
         PlayerPrefs.SetInt("multi", multiplier);
+        PlayerPrefs.SetInt("temp", temporary);
 
 #if UNITY_EDITOR
 
@@ -81,11 +87,21 @@ public class GameManager : MonoBehaviour
 
         vault = PlayerPrefs.GetInt("money");
         multiplier = PlayerPrefs.GetInt("multi");
+        temporary = PlayerPrefs.GetInt("temp");
+
+        autoRoundUp.Add(Time.time);
 
     }
 
     private void Update()
     {
+
+        if (rounding == false)
+        {
+
+            StartCoroutine(Looping(0.5f));
+            
+        }
 
         timesTable.text = "X " + multiplier.ToString();
 
@@ -188,13 +204,40 @@ public class GameManager : MonoBehaviour
                 }
 
             }
-
+            temporary = points;
             vault += (points * multiplier);
+            PlayerPrefs.SetInt("temp", temporary);
             PlayerPrefs.SetInt("money", vault);
             PlayerPrefs.SetInt("multi", multiplier);
             saved.text = vault.ToString();
 
         }
+
+    }
+
+    IEnumerator Looping(float time)
+    {
+
+        rounding = true;
+
+        if (Time.time - autoRoundUp[0] <= 1.0f)
+        {
+
+            autoRoundUp[0] = Time.time;
+
+            vault += (temporary * multiplier);
+
+            saved.text = vault.ToString();
+
+        }
+
+        yield return new WaitForSeconds(time);
+
+        rounding = false;
+
+        StartCoroutine(Looping(time));
+
+        //StopCoroutine(Looping(1));
 
     }
 
