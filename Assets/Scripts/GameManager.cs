@@ -38,7 +38,20 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene(0);
 
-    } 
+    }
+    public void CleanScore()
+    {
+
+        temporary = 0;
+        points = 0;
+        multiplier = 0;
+        vault = 0;
+
+        PlayerPrefs.SetInt("money", vault);
+        PlayerPrefs.SetInt("multi", multiplier);
+        PlayerPrefs.SetInt("temp", temporary);
+
+    }
 
     public void GameQuit()
     {
