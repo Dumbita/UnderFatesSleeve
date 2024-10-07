@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text message;
 
     [SerializeField] TMP_Text balance;
-    [SerializeField] TMP_Text saved;
-    [SerializeField] TMP_Text timesTable;
+    [SerializeField] TMP_Text saved;//vault
+    [SerializeField] TMP_Text timesTable;//multiplier
 
     public Board myBoard;
 
@@ -104,6 +104,7 @@ public class GameManager : MonoBehaviour
         }
 
         timesTable.text = "X " + multiplier.ToString();
+        balance.text = points.ToString();
 
         if (Input.GetMouseButton(0))
         {
@@ -204,11 +205,13 @@ public class GameManager : MonoBehaviour
                 }
 
             }
+
             temporary = points;
             vault += (points * multiplier);
             PlayerPrefs.SetInt("temp", temporary);
             PlayerPrefs.SetInt("money", vault);
             PlayerPrefs.SetInt("multi", multiplier);
+
             saved.text = vault.ToString();
 
         }
@@ -236,8 +239,6 @@ public class GameManager : MonoBehaviour
         rounding = false;
 
         StartCoroutine(Looping(time));
-
-        //StopCoroutine(Looping(1));
 
     }
 

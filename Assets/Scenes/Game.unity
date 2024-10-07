@@ -605,7 +605,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Restart
+  m_text: Replay
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -865,6 +865,7 @@ MonoBehaviour:
   saved: {fileID: 1221625405}
   timesTable: {fileID: 750954368}
   myBoard: {fileID: 0}
+  temporary: 0
   vault: 0
   multiplier: 0
 --- !u!1 &1281747813
