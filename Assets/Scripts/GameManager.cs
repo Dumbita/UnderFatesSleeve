@@ -178,7 +178,7 @@ public class GameManager : MonoBehaviour
 
         balance.text = points.ToString();
 
-        if (gain != 10)
+        if (gain != 1)
         {
 
             if (gain == 0)

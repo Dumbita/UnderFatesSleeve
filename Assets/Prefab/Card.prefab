@@ -147,8 +147,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: {fileID: 6750010447822990127}
   earnings:
-  - {fileID: 21300000, guid: 5c526157aeb83054a87f58dae173d017, type: 3}
-  - {fileID: 21300000, guid: 1252006ef95b9e946b9336954d274f7c, type: 3}
+  - {fileID: 21300000, guid: 279c9251c3f134645a73309c8480e76f, type: 3}
+  - {fileID: 21300000, guid: da1486fe8ba7488408b2c1a784fb372a, type: 3}
   - {fileID: 21300000, guid: 98533a0657e37d54192f257e5f2b59ac, type: 3}
   hasClicked: 0
   col: 0

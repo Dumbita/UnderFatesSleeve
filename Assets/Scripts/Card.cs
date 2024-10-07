@@ -68,14 +68,14 @@ public class Card : MonoBehaviour
             if (current == (myChoice == Choice.GOLD))
             {
 
-                gain = 50;
+                gain = 5;
                 score.sprite = earnings[0];
 
             }
             else
             {
 
-                gain = 10;
+                gain = 1;
                 score.sprite = earnings[1];
 
             }
