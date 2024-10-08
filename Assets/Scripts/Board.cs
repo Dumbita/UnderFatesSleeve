@@ -19,6 +19,9 @@ public enum Choice {
 public class Board : MonoBehaviour
 {
 
+    int gAmount = 2;
+    public int sAmount = 3;
+
     Choice[][] choices;
     List<GridPos> indexList;
 
@@ -65,25 +68,24 @@ public class Board : MonoBehaviour
     {
 
         GridPos temp;
-        temp = GetRandomFromList();
 
-        choices[temp.row][temp.col] = Choice.GOLD;
+        for (int i = 0; i <gAmount; i++)
+        {
 
-        temp = GetRandomFromList();
+            temp = GetRandomFromList();
 
-        choices[temp.row][temp.col] = Choice.GOLD;
+            choices[temp.row][temp.col] = Choice.GOLD;
 
-        temp = GetRandomFromList();
+        }
 
-        choices[temp.row][temp.col] = Choice.SHARK;
+        for (int i = 0; i < sAmount; i++)
+        {
 
-        temp = GetRandomFromList();
+            temp = GetRandomFromList();
 
-        choices[temp.row][temp.col] = Choice.SHARK;
+            choices[temp.row][temp.col] = Choice.SHARK;
 
-        temp = GetRandomFromList();
-
-        choices[temp.row][temp.col] = Choice.SHARK; 
+        }
 
     }
 
